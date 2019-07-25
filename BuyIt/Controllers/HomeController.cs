@@ -17,6 +17,13 @@ namespace BuyIt.Controllers
             {
                 List<User> users=buyItContext.Users.Include(a=>a.Addresses).ToList();
                 List<Address> addresses = buyItContext.Addresses.Include(a => a.User).ToList();
+
+                List<string> names = new List<string>();
+
+                foreach (var user in users)
+                {
+                    names.Add(user.Name);
+                }
             }
 
             return View();
