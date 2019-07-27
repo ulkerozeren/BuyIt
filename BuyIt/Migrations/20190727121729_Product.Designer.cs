@@ -4,14 +4,16 @@ using BuyIt;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BuyIt.Migrations
 {
     [DbContext(typeof(BuyItContext))]
-    partial class BuyItContextModelSnapshot : ModelSnapshot
+    [Migration("20190727121729_Product")]
+    partial class Product
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -62,34 +64,6 @@ namespace BuyIt.Migrations
                         new { Id = 2, Description = "Mutfak elektroniği.", Name = "Beyaz Eşya" },
                         new { Id = 3, Description = "Gardrobunuzu biz dolduruyoruz.", Name = "Teksil" }
                     );
-                });
-
-            modelBuilder.Entity("BuyIt.Models.Product", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CategoryId");
-
-                    b.Property<DateTime>("CreateDate");
-
-                    b.Property<string>("Description")
-                        .IsRequired();
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(120);
-
-                    b.Property<int>("StateId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
-
-                    b.HasIndex("StateId");
-
-                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("BuyIt.Models.State", b =>
@@ -149,19 +123,6 @@ namespace BuyIt.Migrations
                     b.HasOne("BuyIt.Models.State", "State")
                         .WithMany()
                         .HasForeignKey("StateId");
-                });
-
-            modelBuilder.Entity("BuyIt.Models.Product", b =>
-                {
-                    b.HasOne("BuyIt.Models.Category", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("BuyIt.Models.State", "State")
-                        .WithMany()
-                        .HasForeignKey("StateId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

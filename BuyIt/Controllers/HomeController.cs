@@ -13,16 +13,21 @@ namespace BuyIt.Controllers
     {
         public IActionResult Index()
         {
-            using (BuyItContext  buyItContext=new BuyItContext())
-            {
-                List<User> users=buyItContext.Users.Include(a=>a.Addresses).ToList();
-                List<Address> addresses = buyItContext.Addresses.Include(a => a.User).ToList();
-
-
-
-            }
-
+            ViewData["Title"] = "HOŞ GELDİNİZ";
             return View();
         }
+
+        public IActionResult Help()
+        {
+            ViewData["Title"] = "YARDIM MASASI";
+            return View();
+        }
+
+        public IActionResult Contact()
+        {
+            ViewData["Title"] = "İLETİŞİM";
+            return View();
+        }
+
     }
 }

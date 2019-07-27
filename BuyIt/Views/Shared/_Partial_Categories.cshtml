@@ -1,0 +1,19 @@
+﻿
+@{ 
+    List<Category> categories = new List<Category>();
+
+    using (BuyItContext buyItContext = new BuyItContext())
+    {
+
+        categories = buyItContext.Categories.ToList();
+
+    }
+}
+
+<p>
+    @foreach (var item in categories)
+    {
+        <span> <a href="@Url.Action("Index","Category", new { id = item.Id })">@item.Name;</a> </span> <text>|</text>
+
+    }
+</p>
