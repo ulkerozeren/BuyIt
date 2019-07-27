@@ -24,9 +24,46 @@ namespace BuyIt
         {
             //database şeması uygulanırken kullanılacak kural setleri
             //modelBuilder.Entity<User>().Property(a => a.EMail).IsRequired();
+
+            modelBuilder.Entity<Category>().HasData(new Category()
+            {
+                Id=1,
+                Name="Elektronik",
+                Description="Ev elektroniğine dair her şey."
+            });
+
+            modelBuilder.Entity<Category>().HasData(new Category()
+            {
+                Id = 2,
+                Name = "Beyaz Eşya",
+                Description = "Mutfak elektroniği."
+            });
+
+            modelBuilder.Entity<Category>().HasData(new Category()
+            {
+                Id = 3,
+                Name = "Teksil",
+                Description = "Gardrobunuzu biz dolduruyoruz."
+            });
+
+            modelBuilder.Entity<State>().HasData(new State()
+            {
+                Id = 1,
+                Name = "Aktif" 
+            });
+
+            modelBuilder.Entity<State>().HasData(new State()
+            {
+                Id = 2,
+                Name = "Pasif"
+            });
         }
 
         public DbSet<User> Users { get; set; }
         public DbSet<Address> Addresses { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<State> States { get; set; }
+
+
     }
 }
