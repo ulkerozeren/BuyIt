@@ -12,17 +12,20 @@ namespace BuyIt.Controllers
         public IActionResult Handle()
         {
             string json= HttpContext.Request.Form["JSON"].ToString();
-            DTO.ProductSaveDto categorySave= Newtonsoft.Json.JsonConvert.DeserializeObject<DTO.ProductSaveDto>(json);
+            DTO.ProductSaveDto productSave= Newtonsoft.Json.JsonConvert.DeserializeObject<DTO.ProductSaveDto>(json);
 
             using (BuyItContext buyItContext=new BuyItContext())
             {
                 buyItContext.Products.Add(new Models.Product()
                 {
-                    Name = categorySave.productName,
+                    Name = productSave.productName,
                     Description = "boş",
-                    CreateDate=DateTime.UtcNow,
-                    State=buyItContext.States.Single(a=>a.Id==(int)Enums.State.Active)
+                    CreateDate = DateTime.UtcNow,
+                    StateId =  (int)Enums.State.Active, 
+                    CategoryId = productSave.categoryId
                 });
+
+                buyItContext.SaveChanges();
             }
 
             return View();

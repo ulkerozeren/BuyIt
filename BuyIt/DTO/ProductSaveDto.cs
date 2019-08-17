@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace BuyIt.DTO
+﻿namespace BuyIt.DTO
 {
     public class ProductSaveDto
     {
-        public string categoryId { get; set; }
+        public int categoryId { get; set; }
         public string productName { get; set; }
+        public string ProductDescription { get; set; }
     }
 }
 
